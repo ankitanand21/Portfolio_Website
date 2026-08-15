@@ -9,6 +9,7 @@ const apiRoutes = require("./routes/api");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
+app.set("trust proxy", 1);
 
 // --- Middleware ---
 app.use(express.json());
