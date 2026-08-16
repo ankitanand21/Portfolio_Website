@@ -1,3 +1,48 @@
+// ---------- Boot overlay (shown only for the tiny beat before the page paints) ----------
+function setupBootOverlay() {
+  const overlay = document.getElementById("bootOverlay");
+  if (!overlay) return;
+
+  // The page shell (HTML/CSS/JS) no longer waits on the database to be
+  // served, so there's nothing left to poll for here — just let the
+  // overlay clear itself right after paint. It still does its job during
+  // an actual cold start, since the browser can't even run this script
+  // until Render finishes booting and sends the first byte.
+  requestAnimationFrame(() => {
+    setTimeout(() => overlay.classList.add("hidden"), 350);
+  });
+}
+
+// ---------- Sequential top-to-bottom reveal ----------
+function setupRevealSequence() {
+  const blocks = Array.from(document.querySelectorAll(".reveal-block"));
+  if (!blocks.length) return;
+
+  // Reveal above-the-fold blocks immediately in order, like the page is
+  // "typing" itself in from top to bottom.
+  const inView = blocks.filter((b) => b.getBoundingClientRect().top < window.innerHeight);
+  const rest = blocks.filter((b) => !inView.includes(b));
+
+  inView.forEach((block, i) => {
+    setTimeout(() => block.classList.add("is-visible"), i * 140);
+  });
+
+  // Reveal remaining blocks as the user scrolls to them.
+  if (!rest.length) return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+  rest.forEach((block) => observer.observe(block));
+}
+
 // ---------- Terminal typing effect (hero) ----------
 const lines = [
   { t: '<span class="prompt">$</span> <span class="cmd">curl -X GET https://ankitanand.dev/api/status</span>', pause: 500 },
@@ -120,6 +165,8 @@ function setupNavToggle() {
 
 // ---------- Init ----------
 window.addEventListener("DOMContentLoaded", () => {
+  setupBootOverlay();
+  setupRevealSequence();
   setTimeout(typeTerminal, 400);
   loadVisitorCount();
   setupContactForm();

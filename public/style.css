@@ -2,7 +2,7 @@
     --bg: #05070a;
     --bg-raised: #0b0f14;
     --border: #1a2028;
-    --cyan: #00f7ff;
+    --cyan: #FF9933;
     --violet: #7c5cff;
     --text: #e8edf2;
     --text-muted: #6b7785;
@@ -39,8 +39,8 @@
     content:'';
     position:fixed; inset:0;
     background-image:
-      linear-gradient(rgba(0,247,255,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,247,255,0.035) 1px, transparent 1px);
+      linear-gradient(rgba(255,153,51,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,153,51,0.035) 1px, transparent 1px);
     background-size:48px 48px;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 70%);
     pointer-events:none;
@@ -130,7 +130,7 @@
     transition:all .25s cubic-bezier(.4,0,.2,1); border:1px solid transparent;
   }
   .btn-primary{ background:var(--cyan); color:#000; }
-  .btn-primary:hover{ box-shadow:0 0 24px rgba(0,247,255,0.4); transform:translateY(-1px); }
+  .btn-primary:hover{ box-shadow:0 0 24px rgba(255,153,51,0.4); transform:translateY(-1px); }
   .btn-ghost{ border-color:var(--border); color:var(--text); }
   .btn-ghost:hover{ border-color:var(--text-muted); }
 
@@ -268,7 +268,7 @@
   background:var(--cyan); color:#000; border:none; border-radius:8px;
   padding:13px 24px; cursor:pointer; transition:all .25s cubic-bezier(.4,0,.2,1);
 }
-.contact-form button:hover{ box-shadow:0 0 24px rgba(0,247,255,0.4); }
+.contact-form button:hover{ box-shadow:0 0 24px rgba(255,153,51,0.4); }
 .contact-form button:disabled{ opacity:.6; cursor:not-allowed; }
 
 /* --- Polish pass additions --- */
@@ -318,3 +318,45 @@
 .visitor-badge .num{ color:var(--bg); font-weight:600; }
 
 .foot-note{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-muted); }
+
+/* --- Sequential top-to-bottom reveal (page-load "typing in" effect) --- */
+.reveal-block{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .65s cubic-bezier(.4,0,.2,1), transform .65s cubic-bezier(.4,0,.2,1);
+}
+.reveal-block.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .reveal-block{ opacity:1; transform:none; transition:none; }
+}
+
+/* --- "Waking up server" boot overlay (shown while cold-start APIs are pinged) --- */
+.boot-overlay{
+  position:fixed; inset:0; z-index:9999;
+  background:var(--bg);
+  display:flex; align-items:center; justify-content:center;
+  transition:opacity .5s ease, visibility .5s ease;
+}
+.boot-overlay.hidden{
+  opacity:0; visibility:hidden; pointer-events:none;
+}
+.boot-box{
+  font-family:'JetBrains Mono', monospace; font-size:13.5px;
+  color:#c5d0da; text-align:left; width:min(420px, 86vw);
+  border:1px solid var(--border); border-radius:10px;
+  background:var(--bg-raised); padding:18px 20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+.boot-box .boot-line{ margin-bottom:6px; display:flex; gap:8px; }
+.boot-box .boot-line .prompt{ color:var(--mono-green); }
+.boot-box .boot-status{ color:var(--cyan); }
+.boot-dots span{ animation:bootDot 1.4s infinite; opacity:0; }
+.boot-dots span:nth-child(2){ animation-delay:.2s; }
+.boot-dots span:nth-child(3){ animation-delay:.4s; }
+@keyframes bootDot{
+  0%, 20%{ opacity:0; } 35%{ opacity:1; } 60%, 100%{ opacity:0; }
+}
+

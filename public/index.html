@@ -10,7 +10,14 @@
 </head>
 <body>
 
-<nav>
+<div class="boot-overlay" id="bootOverlay">
+  <div class="boot-box">
+    <div class="boot-line"><span class="prompt">$</span><span>connecting to server</span></div>
+    <div class="boot-line"><span class="prompt">$</span><span class="boot-status">waking things up<span class="boot-dots"><span>.</span><span>.</span><span>.</span></span></span></div>
+  </div>
+</div>
+
+<nav class="reveal-block">
   <div class="wrap">
     <a href="#top" class="logo" aria-label="Home">ankit<span>.dev</span></a>
     <div class="nav-links" id="navLinks">
@@ -26,7 +33,7 @@
   </div>
 </nav>
 
-<header class="hero" id="top">
+<header class="hero reveal-block" id="top">
   <div class="wrap hero-wrap">
     <div>
       <div class="eyebrow">Open to Backend / Full-stack roles</div>
@@ -47,7 +54,7 @@
   </div>
 </header>
 
-<section id="about">
+<section id="about" class="reveal-block">
   <div class="wrap">
     <div class="section-label">// 01 — about</div>
     <h2 class="section-title">Who I am</h2>
@@ -69,7 +76,7 @@
   </div>
 </section>
 
-<section id="skills">
+<section id="skills" class="reveal-block">
   <div class="wrap">
     <div class="section-label">// 02 — stack</div>
     <h2 class="section-title">What I build with</h2>
@@ -142,7 +149,7 @@
   </div>
 </section>
 
-<section id="projects">
+<section id="projects" class="reveal-block">
   <div class="wrap">
     <div class="section-label">// 03 — projects</div>
     <h2 class="section-title">Featured builds</h2>
@@ -179,7 +186,7 @@
   </div>
 </section>
 
-<section id="experience">
+<section id="experience" class="reveal-block">
   <div class="wrap">
     <div class="section-label">// 04 — experience</div>
     <h2 class="section-title">Where I've worked</h2>
@@ -200,7 +207,7 @@
   </div>
 </section>
 
-<footer id="contact">
+<footer id="contact" class="reveal-block">
   <div class="wrap">
     <div class="section-label" style="text-align:center;">// 05 — contact</div>
     <h2>Let's build something.</h2>
@@ -237,3 +244,4 @@
 <script src="/script.js"></script>
 </body>
 </html>
+
