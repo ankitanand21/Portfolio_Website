@@ -308,7 +308,7 @@
 }
 /* LinkedIn source image has extra white padding baked around the mark —
    zoom past it inside the clipped circle so only the logo itself shows */
-.icon-badge.linkedin img{ transform:scale(1.9); }
+.icon-badge.linkedin img{ transform:scale(1.25); }
 
 /* Visitor badge — same color as the background, so it's present but not visible */
 .visitor-badge{
