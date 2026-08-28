@@ -306,9 +306,13 @@
 .icon-badge img{
   width:100%; height:100%; object-fit:cover;
 }
-/* LinkedIn source image has extra white padding baked around the mark —
-   zoom past it inside the clipped circle so only the logo itself shows */
-.icon-badge.linkedin img{ transform:scale(1.25); }
+/* LinkedIn logo — keep it smaller and centered to match the GitHub and Gmail icons */
+.icon-badge.linkedin img{
+  width:16px;
+  height:16px;
+  object-fit:contain;
+  transform:none;
+}
 
 /* Visitor badge — same color as the background, so it's present but not visible */
 .visitor-badge{
