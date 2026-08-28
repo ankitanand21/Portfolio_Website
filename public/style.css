@@ -98,13 +98,13 @@
   /* HERO */
   .hero{
     position:relative; z-index:1;
-    padding:100px 0 25px;
+    padding:160px 0 60px;
   }
   .hero .hero-wrap{
     display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:center;
   }
   @media (max-width:900px){
-    .hero{ padding:90px 0 25px; }
+    .hero{ padding:130px 0 40px; }
     .hero .hero-wrap{ grid-template-columns:1fr; }
   }
 
@@ -130,7 +130,7 @@
     transition:all .25s cubic-bezier(.4,0,.2,1); border:1px solid transparent;
   }
   .btn-primary{ background:var(--cyan); color:#000; }
-  .btn-primary:hover{ box-shadow:0 0 24px rgba(255,153,51,0.4); transform:translateY(-1px); }
+  .btn-primary:hover{ box-shadow:0 0 24px rgba(0,247,255,0.4); transform:translateY(-1px); }
   .btn-ghost{ border-color:var(--border); color:var(--text); }
   .btn-ghost:hover{ border-color:var(--text-muted); }
 
@@ -164,15 +164,15 @@
   @keyframes blink{ 50%{ opacity:0; } }
 
   /* SECTION SHARED */
-  section{ position:relative; z-index:1; padding:32px 0; }
+  section{ position:relative; z-index:1; padding:56px 0; border-top:1px solid var(--border); }
   .section-label{
     font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--cyan);
     text-transform:uppercase; letter-spacing:0.1em; margin-bottom:12px;
   }
-  .section-title{ font-size:clamp(26px,3.5vw,36px); margin-bottom:16px; }
+  .section-title{ font-size:clamp(26px,3.5vw,36px); margin-bottom:40px; }
 
   /* ABOUT */
-  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:32px; }
+  .about-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:56px; }
   @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; } }
   .about-grid p{ color:var(--text-muted); font-size:16px; margin-bottom:16px; }
   .about-grid p strong{ color:var(--text); font-weight:500; }
@@ -183,7 +183,7 @@
   .fact-row .v{ text-align:right; }
 
   /* SKILLS */
-  .skill-group{ margin-bottom:18px; }
+  .skill-group{ margin-bottom:28px; }
   .skill-group h4{
     font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-muted);
     text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px;
@@ -215,7 +215,7 @@
   .tag{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--mono-green); border:1px solid rgba(61,220,132,0.3); padding:3px 9px; border-radius:4px; }
 
   /* EXPERIENCE */
-  .timeline-item{ display:grid; grid-template-columns:140px 1fr; gap:24px; padding-bottom:18px; }
+  .timeline-item{ display:grid; grid-template-columns:140px 1fr; gap:24px; padding-bottom:32px; }
   @media (max-width:600px){ .timeline-item{ grid-template-columns:1fr; } }
   .timeline-item .when{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--text-muted); }
   .timeline-item h3{ font-size:18px; margin-bottom:4px; }
@@ -225,9 +225,9 @@
   .timeline-item li::before{ content:'▹'; position:absolute; left:0; color:var(--violet); }
 
   /* CONTACT / FOOTER */
-  footer{ padding:32px 0 32px; text-align:center; position:relative; z-index:1; background:var(--bg); }
+  footer{ padding:56px 0 50px; text-align:center; position:relative; z-index:1; background:var(--bg); }
   footer h2{ font-size:clamp(28px,4vw,42px); margin-bottom:16px; }
-  footer p{ color:var(--text-muted); margin-bottom:20px; }
+  footer p{ color:var(--text-muted); margin-bottom:36px; }
   .contact-links{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:60px; }
   .contact-links a{
     font-family:'JetBrains Mono',monospace; font-size:14px;
@@ -268,7 +268,7 @@
   background:var(--cyan); color:#000; border:none; border-radius:8px;
   padding:13px 24px; cursor:pointer; transition:all .25s cubic-bezier(.4,0,.2,1);
 }
-.contact-form button:hover{ box-shadow:0 0 24px rgba(255,153,51,0.4); }
+.contact-form button:hover{ box-shadow:0 0 24px rgba(0,247,255,0.4); }
 .contact-form button:disabled{ opacity:.6; cursor:not-allowed; }
 
 /* --- Polish pass additions --- */
@@ -318,45 +318,4 @@
 .visitor-badge .num{ color:var(--bg); font-weight:600; }
 
 .foot-note{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--text-muted); }
-
-/* --- Sequential top-to-bottom reveal (page-load "typing in" effect) --- */
-.reveal-block{
-  opacity:0;
-  transform:translateY(28px);
-  transition:opacity .65s cubic-bezier(.4,0,.2,1), transform .65s cubic-bezier(.4,0,.2,1);
-}
-.reveal-block.is-visible{
-  opacity:1;
-  transform:translateY(0);
-}
-@media (prefers-reduced-motion: reduce){
-  .reveal-block{ opacity:1; transform:none; transition:none; }
-}
-
-/* --- "Waking up server" boot overlay (shown while cold-start APIs are pinged) --- */
-.boot-overlay{
-  position:fixed; inset:0; z-index:9999;
-  background:var(--bg);
-  display:flex; align-items:center; justify-content:center;
-  transition:opacity .5s ease, visibility .5s ease;
-}
-.boot-overlay.hidden{
-  opacity:0; visibility:hidden; pointer-events:none;
-}
-.boot-box{
-  font-family:'JetBrains Mono', monospace; font-size:13.5px;
-  color:#c5d0da; text-align:left; width:min(420px, 86vw);
-  border:1px solid var(--border); border-radius:10px;
-  background:var(--bg-raised); padding:18px 20px;
-  box-shadow:0 20px 60px rgba(0,0,0,0.5);
-}
-.boot-box .boot-line{ margin-bottom:6px; display:flex; gap:8px; }
-.boot-box .boot-line .prompt{ color:var(--mono-green); }
-.boot-box .boot-status{ color:var(--cyan); }
-.boot-dots span{ animation:bootDot 1.4s infinite; opacity:0; }
-.boot-dots span:nth-child(2){ animation-delay:.2s; }
-.boot-dots span:nth-child(3){ animation-delay:.4s; }
-@keyframes bootDot{
-  0%, 20%{ opacity:0; } 35%{ opacity:1; } 60%, 100%{ opacity:0; }
-}
 
